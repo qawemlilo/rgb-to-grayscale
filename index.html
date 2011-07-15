@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<title>RGB to Grayscale: html5</title>
+<link rel="scripts/stylesheet" href="style.css" type="text/css" />
+</head>
+<body id="page">
+<h1>RGB to Grayscale: html5</h1>
+
+<p>This demonstration shows how to pre-load an image in the 
+background while showing a loading screen.  It also supports loading the
+ image, then running additional code, such as Ajax requests before 
+finally showing the image.</p>
+
+<form action="#" method="GET" id="webimage">
+    <input name="url" id="url" type="text" placeholder="Enter image url" /> <input value="Grayscale"  id="submit" name="Submit" type="button">
+</form>
+
+<div id="container">
+    <div id="mainloader" class="loader waiting" >
+    </div>
+	
+    <div id="sideloader" class="loader waiting">
+    </div>
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/grayscale.js"></script>
+<script type="text/javascript">
+function displayMSG(msg,x){var elem=$('<div>',{id:'errorMessage',html:msg});elem.click(function(){$(this).fadeOut(function(){$(this).remove();});});if(x){setTimeout(function(){elem.click();},x);}
+else{setTimeout(function(){elem.click();},5000);}
+elem.hide().appendTo('body').slideDown();}
+
+$(function () {
+  var flag = false;
+  $('#url').focus(function(){
+      $(this).val('');
+  });
+  $('#submit').click(function () {
+    var img = new Image(), url = $('#url').val(), loader = $('.loader');
+    
+	$("#mainloader, #sideloader").empty().fadeIn('slow').removeClass('waiting').removeClass('broken').addClass('loading');
+	
+    $(img).load(function () {
+	    var $this = this, w = $this.width, h = $this.height;
+        
+		if (w > 500) flag = true;
+
+        $($this).hide();
+		
+	    
+		$("#mainloader, #sideloader").animate({"width": w, "height": h}, 500, function() {
+            $('#mainloader').removeClass('waiting').append($this);	
+            $($this).fadeIn();
+            $('#sideloader').removeClass('waiting')
+			window.setTimeout(function(){
+			    editImage(img, 'sideloader');
+			    if (flag) $("#mainloader").fadeOut('slow');
+            }, 1000);				
+		});  		
+    })
+	
+	.error(function () {
+        $('#mainloader, #sideloader').removeClass('waiting').empty().addClass('broken');
+        displayMSG("Errror in loading image");		
+    })
+
+    .attr('src', 'action.php?url='+url);
+  });
+});
+</script>
+</body>
+</html>

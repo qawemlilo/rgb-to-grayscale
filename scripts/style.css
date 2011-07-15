@@ -1,0 +1,112 @@
+﻿body { 
+  margin: 10px; 
+  padding: 0; 
+  font: 1em "Trebuchet MS", verdana, arial, sans-serif; 
+  font-size: 100%; 
+}
+h1 { 
+  margin-bottom: 2px; 
+}
+
+div.loader {
+  border: 1px solid #ccc;
+  width: 500px;
+  height: 500px;
+  overflow: hidden;
+  float: left;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input[type=text] {
+  border: 1px solid #DDD;
+  padding: 5px 10px;
+  font-size: 18px;
+  width: 400px;
+  margin-left: 10px;
+  margin-right: 5px;
+  outline-offset: -2px;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border: 1px solid #CCC;
+}
+
+#deskimage {
+  display: none
+}
+
+input[type=text]:focus {
+  box-shadow: rgba(82, 168, 236, 0.496094) 0px 0px 8px;
+  -webkit-box-shadow: rgba(82, 168, 236, 0.496094) 0px 0px 8px;
+  -moz-box-shadow: rgba(82, 168, 236, 0.496094) 0px 0px 8px;
+  border-color: rgba(82, 168, 236, 0.746094) !important;
+  outline:none; /* when highlighted, don't show browser outline */
+}
+
+input[type=button] {
+  background-color: #F47A20;
+  border-color: #F47A20;
+  color: #FFF;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 18px;
+  padding: 4px 9px;
+  margin-right: 5px;
+  -webkit-box-shadow: 0 1px 0 #F8F8F8;
+}
+
+input[type=button]:hover, input[type=button]:focus {
+  background-color: #000;
+  color: #FFF;
+  border-color: #000;
+}
+
+input[type=file] {
+  margin-left: 10px;
+}
+
+input[type=button]:active {
+  background-color: #000;
+}
+
+.loading {
+   background: url(images/loading.gif) no-repeat center center;
+}
+
+.waiting {
+   background: url(images/waiting.png) no-repeat center center;
+}
+
+.broken {
+   background: url(images/broken.png) no-repeat center center;
+}
+
+#errorMessage {
+	width:100%;
+	top:0;
+	left:0;
+	position:fixed;
+	background-color:#F47A20;
+	border-bottom:1px solid #d32a2a;
+	font-size:23px;
+	padding:24px;
+	text-align:center;
+	color:#fff;
+	text-shadow:1px 1px 0 #940f0f;
+}
+
+#container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px;
+}
