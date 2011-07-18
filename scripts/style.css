@@ -80,15 +80,15 @@ input[type=button]:active {
 }
 
 .loading {
-   background: url(images/loading.gif) no-repeat center center;
+   background: url(../images/loading.gif) no-repeat center center;
 }
 
 .waiting {
-   background: url(images/waiting.png) no-repeat center center;
+   background: url(../images/waiting.png) no-repeat center center;
 }
 
 .broken {
-   background: url(images/broken.png) no-repeat center center;
+   background: url(../images/broken.png) no-repeat center center;
 }
 
 #errorMessage {

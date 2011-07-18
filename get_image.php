@@ -3,13 +3,15 @@ if ((isset($_GET['url']))) {
     $url = $_GET['url'];
     $file_format = pathinfo($url, PATHINFO_EXTENSION);
 	try
-	{	
-        $img = file_get_contents($url);
-
-        header("Content-Type: image/$file_format");
-        header("Content-disposition: filename=image.$file_format");
-
-        echo $img;
+	{
+        ob_start();	
+	    header("Content-Type: image/$file_format");
+		header("Content-disposition: filename=image.$file_format");
+        $img = @file_get_contents($url);
+		
+		if($img) echo $img;
+        ob_end_flush();
+        exit();
     }
 	
 	catch(Exception $e)
@@ -18,5 +20,5 @@ if ((isset($_GET['url']))) {
 	}
 }
 
-else die('Illegal request');
+else die('Unknown request');
 ?>
