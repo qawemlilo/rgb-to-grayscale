@@ -2,25 +2,33 @@
 <html> 
 <head>
 <meta charset="utf-8">
-<title>RGB to Grayscale: html5</title>
+<title>RGB to Grayscale: html5 canvas</title>
 <link rel="stylesheet" href="scripts/style.css" type="text/css" />
 </head>
-<body id="page">
-<h1>RGB to Grayscale: html5</h1>
+<body>
+  <h1>RGB to Grayscale: html5</h1>
 
-<p>Convert images to grayscale using HTML5 canvas.</p>
+  <a href="https://github.com/qawemlilo/rgb-to-grayscale" target="_blank" id="forkme">
+    <img src="images/fork.png" />
+  </a>
+  <p>Convert images to grayscale using HTML5 canvas.</p>
 
-<form action="#" method="GET" id="webimage">
-    <input name="url" id="url" type="text" placeholder="Enter image url" /> <input value="Grayscale"  id="submit" name="Submit" type="button">
-</form>
+  <form action="#" method="GET" id="webimage">
+    <input name="url" id="url" type="text" placeholder="Enter image url" /> 
+	<input value="Grayscale"  id="submit" name="Submit" type="button">
+  </form>
 
-<div id="container">
+  <div id="container">
     <div id="mainloader" class="loader waiting" >
     </div>
 	
     <div id="sideloader" class="loader waiting">
     </div>
-</div>
+  </div>
+  
+  <div id="footer">
+  Copyright &copy; 2011 <a href="https://plus.google.com/111595084798587457827/about" target="black"> Raging Flame</a> | <a href="http://twitter.com/ragingflameblog" target="black">@Ragingflameblog</a>
+  </div>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 <script type="text/javascript" src="scripts/grayscale.js"></script>
@@ -29,31 +37,47 @@ function displayMSG(msg,x){var elem=$('<div>',{id:'errorMessage',html:msg});elem
 else{setTimeout(function(){elem.click();},5000);}
 elem.hide().appendTo('body').slideDown();}
 
+function isCanvasSupported() {
+  var elem = document.createElement('canvas');
+  return !!(elem.getContext && elem.getContext('2d'));
+}
+
 $(function () {
-  var flag = false;
+  var flag = false, c_support = isCanvasSupported();
+  
+  if(!c_support) {
+     displayMSG("Your browser does not support HTML5 Canvas", 10000);
+	 return;
+  }
+
   $('#url').focus(function(){
       $(this).val('');
   });
+  
   $('#submit').click(function () {
     var img = new Image(), url = $('#url').val(), loader = $('.loader');
     
 	$("#mainloader, #sideloader").empty().fadeIn('slow').removeClass('waiting').removeClass('broken').addClass('loading');
 	
     $(img).load(function () {
-	    var $this = this, w = $this.width, h = $this.height;
-        
+	    var $this = this, w = $this.width, h = $this.height;   
 		if (w > 500) flag = true;
-
         $($this).hide();
 		
-	    
+	    $('#mainloader').removeClass('loading');
+		
 		$("#mainloader, #sideloader").animate({"width": w, "height": h}, 500, function() {
-            $('#mainloader').removeClass('waiting').append($this);	
+            $('#mainloader').append($this);	
             $($this).fadeIn();
-            $('#sideloader').removeClass('waiting')
+            
 			window.setTimeout(function(){
+			    $('#sideloader').removeClass('loading');
 			    editImage(img, 'sideloader');
-			    if (flag) $("#mainloader").fadeOut('slow');
+				
+			    if (flag) {
+				    $("#mainloader").fadeOut('slow');
+					flag = false;
+				}
             }, 1000);				
 		});  		
     })
@@ -63,7 +87,7 @@ $(function () {
         displayMSG("Errror in loading image");		
     })
 
-    .attr('src', 'get_image.php?url='+url);
+    .attr('src', 'http://apps.rflab.co.za/rgb-to-grayscale/get_image.php?url='+url);
   });
 });
 </script>

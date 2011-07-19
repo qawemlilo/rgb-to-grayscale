@@ -1,0 +1,18 @@
+Email: qawemlilo@gmail.com
+
+I suck at photoshop so I decided to write an HTML5 application uses the canvas api to edit images to grayscale.
+
+What sucks about the canvas api is the same origin policy that prevents you from manipulating images from another domain.
+
+I created my own hack which uses a php file to fetch the image from a remote server and load it as a local resource.
+
+API
+
+http://apps.rflab.co.za/rgb-to-grayscale/get_image.php?url=<your image url>
+
+Simply replace the url of your external images like as follows:
+
+Before: <img src="http://somedomain.com/images/image.png" />
+After: <img src="http://apps.rflab.co.za/rgb-to-grayscale/get_image.php?url=http://somedomain.com/images/image.png" /> 
+
+Once the image loads you are good to go, you can now use the canvas api to manipulate the image.
