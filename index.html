@@ -4,6 +4,19 @@
 <meta charset="utf-8">
 <title>RGB to Grayscale: html5 canvas</title>
 <link rel="stylesheet" href="scripts/style.css" type="text/css" />
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-11789217-16']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </head>
 <body>
   <h1>RGB to Grayscale: html5</h1>
@@ -11,7 +24,7 @@
   <a href="https://github.com/qawemlilo/rgb-to-grayscale" target="_blank" id="forkme">
     <img src="images/fork.png" />
   </a>
-  <p>Convert images to grayscale using HTML5 canvas.</p>
+  <p>Edit images to grayscale using JavaScipt and HTML5 canvas.</p>
 
   <form action="#" method="GET" id="webimage">
     <input name="url" id="url" type="text" placeholder="Enter image url" /> 
@@ -27,7 +40,7 @@
   </div>
   
   <div id="footer">
-  Copyright &copy; 2011 <a href="https://plus.google.com/111595084798587457827/about" target="black"> Raging Flame</a> | <a href="http://twitter.com/ragingflameblog" target="black">@Ragingflameblog</a>
+  Copyright &copy; 2011 <a href="https://plus.google.com/111595084798587457827/about" target="black"> Raging Flame</a> | <a href="http://twitter.com/ragingflameblog" target="black">@Ragingflameblog</a> | <a href="https://gist.github.com/1091814" target="black">Gist</a>
   </div>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
@@ -56,7 +69,7 @@ $(function () {
   
   $('#submit').click(function () {
     var img = new Image(), url = $('#url').val(), loader = $('.loader');
-    
+    _gaq.push(['_trackEvent', 'Clicks', 'Grayscale', url]);
 	$("#mainloader, #sideloader").empty().fadeIn('slow').removeClass('waiting').removeClass('broken').addClass('loading');
 	
     $(img).load(function () {
